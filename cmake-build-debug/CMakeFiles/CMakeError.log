@@ -1,0 +1,63 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/kirill2000/Lab9/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_c3686/fast && /usr/bin/make -f CMakeFiles/cmTC_c3686.dir/build.make CMakeFiles/cmTC_c3686.dir/build
+make[1]: вход в каталог «/home/kirill2000/Lab9/cmake-build-debug/CMakeFiles/CMakeTmp»
+Building C object CMakeFiles/cmTC_c3686.dir/src.c.o
+/usr/bin/gcc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_c3686.dir/src.c.o   -c /home/kirill2000/Lab9/cmake-build-debug/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_c3686
+/home/kirill2000/clion-2020.1/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c3686.dir/link.txt --verbose=1
+/usr/bin/gcc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_c3686.dir/src.c.o  -o cmTC_c3686 
+CMakeFiles/cmTC_c3686.dir/src.c.o: In function `main':
+src.c:(.text+0x3e): undefined reference to `pthread_create'
+src.c:(.text+0x4a): undefined reference to `pthread_detach'
+src.c:(.text+0x5b): undefined reference to `pthread_join'
+src.c:(.text+0x6f): undefined reference to `pthread_atfork'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_c3686.dir/build.make:86: recipe for target 'cmTC_c3686' failed
+make[1]: *** [cmTC_c3686] Error 1
+make[1]: выход из каталога «/home/kirill2000/Lab9/cmake-build-debug/CMakeFiles/CMakeTmp»
+Makefile:121: recipe for target 'cmTC_c3686/fast' failed
+make: *** [cmTC_c3686/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/kirill2000/Lab9/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_587fd/fast && /usr/bin/make -f CMakeFiles/cmTC_587fd.dir/build.make CMakeFiles/cmTC_587fd.dir/build
+make[1]: вход в каталог «/home/kirill2000/Lab9/cmake-build-debug/CMakeFiles/CMakeTmp»
+Building C object CMakeFiles/cmTC_587fd.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_587fd.dir/CheckFunctionExists.c.o   -c /home/kirill2000/clion-2020.1/bin/cmake/linux/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_587fd
+/home/kirill2000/clion-2020.1/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_587fd.dir/link.txt --verbose=1
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_587fd.dir/CheckFunctionExists.c.o  -o cmTC_587fd  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_587fd.dir/build.make:86: recipe for target 'cmTC_587fd' failed
+make[1]: *** [cmTC_587fd] Error 1
+make[1]: выход из каталога «/home/kirill2000/Lab9/cmake-build-debug/CMakeFiles/CMakeTmp»
+Makefile:121: recipe for target 'cmTC_587fd/fast' failed
+make: *** [cmTC_587fd/fast] Error 2
+
+
+
